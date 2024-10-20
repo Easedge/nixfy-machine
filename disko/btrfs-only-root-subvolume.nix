@@ -3,7 +3,7 @@
     disk = {
       nixos = {
         type = "disk";
-        device = "/dev/disk/by-diskseq/1";
+        device = "/dev/vda";
         content = {
           type = "gpt";
           partitions = {
