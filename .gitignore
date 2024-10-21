@@ -1,4 +1,4 @@
-# ignore lock file
-flake.lock
+# can not ignore lock file
+# flake.lock
 # ignore ALL files in ANY directory named direnv
 .direnv/
