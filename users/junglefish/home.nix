@@ -51,11 +51,11 @@
   };
 
   programs.fzf.enable = true;
-  programs.chromium.enable = true;
 
   home.packages = with pkgs; [
     htop
     vscode-fhs
+    google-chrome
     gnomeExtensions.caffeine
     gnomeExtensions.paperwm
   ];
