@@ -21,26 +21,21 @@
   # boot.loader.grub.efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
   # boot.loader.grub.useOSProber = true;
 
-  boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "ahci" "xhci_pci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
-  boot.blacklistedKernelModules = [ "hyperv_fb" ];
+  boot.blacklistedKernelModules = [ ];
   boot.extraModulePackages = [ ];
 
 
-  networking.hostName = "hyperv";
+  networking.hostName = "vmware";
   networking.proxy.default = "http://192.168.31.180:8080/";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   networking.networkmanager.enable = true;
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
 
-  virtualisation.hypervGuest.enable = true;
-  virtualisation.hypervGuest.videoMode = "1920x1080";
+  virtualisation.vmware.guest.enable = true;
 
   hardware.pulseaudio.enable = false;
 

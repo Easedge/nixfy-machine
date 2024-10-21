@@ -9,6 +9,8 @@ sudo nixos-install --flake .#your-hostname
 ## rebuild system
 
 ```sh
+nix flake update
+
 sudo nixos-rebuild --flake .#your-hostname
 
 home-manager --flake .#your-username@your-hostname

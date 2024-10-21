@@ -64,11 +64,11 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        hyperv = nixpkgs.lib.nixosSystem {
+        vmware = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./hosts/hyperv/configuration.nix
+            ./hosts/vmware/configuration.nix
             
             disko.nixosModules.disko
           ];
