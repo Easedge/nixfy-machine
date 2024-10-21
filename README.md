@@ -5,3 +5,11 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 
 sudo nixos-install --flake .#your-hostname
 ```
+
+## rebuild system
+
+```sh
+sudo nixos-rebuild --flake .#your-hostname
+
+home-manager --flake .#your-username@your-hostname
+```
