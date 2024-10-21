@@ -104,6 +104,7 @@
   services.openssh.enable = true;
   services.printing.enable = true;
   services.libinput.enable = true;
+  services.colord.enable = true;
 
   services.pipewire = {
     enable = true;
