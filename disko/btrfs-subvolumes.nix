@@ -29,9 +29,9 @@
                 # unless their parent is mounted
                 subvolumes = {
                   # Subvolume name is different from mountpoint
-                  "/rootfs" = {
-                    mountpoint = "/";
-                  };
+                  # "/rootfs" = {
+                  #   mountpoint = "/";
+                  # };
                   # Subvolume name is the same as the mountpoint
                   "/home" = {
                     mountOptions = [ "compress=zstd" ];
@@ -48,20 +48,19 @@
                     swap = {
                       swapfile.size = "1024M";
                       # swapfile2.size = "2048M";
-                      # swapfile2.path = "rel-path";
                     };
                   };
                 };
 
-                mountpoint = "/partition-root";
-                swap = {
-                  swapfile = {
-                    size = "1024M";
-                  };
-                  # swapfile2 = {
-                  #   size = "2048M";
-                  # };
-                };
+                mountpoint = "/";
+                # swap = {
+                #   swapfile = {
+                #     size = "1024M";
+                #   };
+                #   swapfile2 = {
+                #     size = "2048M";
+                #   };
+                # };
               };
             };
           };

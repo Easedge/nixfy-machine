@@ -38,8 +38,9 @@
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.supportedLocales = [ "zh_CN.UTF-8/UTF-8" ];
+  i18n.supportedLocales = [ "C.UTF-8" "zh_CN.UTF-8" ];
   i18n.inputMethod = {
+    enable = true;
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [
       libpinyin
@@ -87,7 +88,6 @@
 
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
-  services.xserver.libinput.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.packagekit.enable = true;
@@ -105,8 +105,8 @@
 
   services.openssh.enable = true;
   services.printing.enable = true;
+  services.libinput.enable = true;
 
-  sound.enable = true;
   services.pipewire = {
     enable = true;
     audio.enable = true;
@@ -126,7 +126,6 @@
     };
   };
 
-  programs.home-manager.enable = true;
   programs.git.enable = true;
   programs.neovim.enable = true;
   programs.nix-ld.enable = true;
@@ -138,7 +137,7 @@
   programs.direnv.enable = true;
   programs.bash = {
     enableLsColors = true;
-    enableCompletion = true;
+    completion = true;
     blesh.enable = true;
     shellInit = ''
       eval "$(direnv hook bash)"

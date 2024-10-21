@@ -76,6 +76,7 @@
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "admin";
       isNormalUser = true;
+      packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
