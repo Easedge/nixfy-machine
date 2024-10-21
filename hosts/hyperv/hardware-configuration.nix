@@ -1,9 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
   imports = [
-    # ../../disko/btrfs-subvolumes.nix
-    ../../disko/btrfs-only-root-subvolume.nix
-    # ../../disko/luks-btrfs-subvolumes.nix
+    ./diskoconfig.nix
   ] ++ [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
