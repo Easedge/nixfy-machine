@@ -29,8 +29,8 @@
 
 
   networking.hostName = "vmware";
-  networking.proxy.default = "http://192.168.31.180:8080/";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # networking.proxy.default = "http://192.168.31.180:8080/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   networking.networkmanager.enable = true;
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
