@@ -44,7 +44,7 @@
     };
   };
 
-  # TODO: Set your username
+  news.display = "show";
   home = {
     username = "junglefish";
     homeDirectory = "/home/junglefish";
