@@ -11,13 +11,9 @@
       noto-fonts-emoji
       noto-fonts-extra
       wqy_zenhei
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "JetBrainsMono"
-          "Iosevka"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
     ];
 
     fontDir.enable = true;
