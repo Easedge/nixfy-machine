@@ -23,4 +23,11 @@
       userServices = true;
     };
   };
+
+  services.cockpit = {
+    enable = tree;
+    port = 9090;
+    openFirewall = false;
+    settings = { };
+  };
 }
