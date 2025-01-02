@@ -9,8 +9,13 @@
   # services.packagekit.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.wlr.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   xdg.portal.xdgOpenUsePortal = true;
+  xdg.portal.config = { };
+  xdg.portal.wlr.settings = { };
+  xdg.portal.configPackages = [ ];
+
 
   security.polkit.enable = true;
   security.rtkit.enable = true;
