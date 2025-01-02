@@ -22,6 +22,8 @@
     pciutils
     nixpkgs-fmt
     niri
+    waybar
+    fuzzel
     alacritty
     kitty
   ];
