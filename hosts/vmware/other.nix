@@ -22,7 +22,8 @@
     pciutils
     nixpkgs-fmt
     niri
-    ghostty
+    alacritty
+    kitty
   ];
 
   programs.nix-ld.enable = true;
