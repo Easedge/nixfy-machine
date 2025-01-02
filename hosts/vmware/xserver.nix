@@ -13,7 +13,13 @@
   xdg.portal.wlr.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   xdg.portal.xdgOpenUsePortal = true;
-  xdg.portal.config = { };
+  xdg.portal.config = {
+    common = {
+      default = [
+        "gtk"
+      ];
+    };
+  };
   xdg.portal.wlr.settings = { };
   xdg.portal.configPackages = [ ];
 
