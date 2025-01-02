@@ -21,6 +21,8 @@
     ripgrep
     pciutils
     nixpkgs-fmt
+    niri
+    ghostty
   ];
 
   programs.nix-ld.enable = true;
