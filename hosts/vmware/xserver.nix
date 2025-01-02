@@ -2,11 +2,11 @@
 {
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.xkb.layout = "cn";
   services.xrdp.audio.package = pkgs.pulseaudio-module-xrdp;
-  services.packagekit.enable = true;
+  # services.packagekit.enable = true;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ ];
