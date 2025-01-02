@@ -25,7 +25,7 @@
   };
 
   services.cockpit = {
-    enable = tree;
+    enable = true;
     port = 9090;
     openFirewall = false;
     settings = { };
