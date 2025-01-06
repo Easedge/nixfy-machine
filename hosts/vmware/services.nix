@@ -29,7 +29,9 @@
     port = 9090;
     openFirewall = false;
     settings = {
-      AllowUnencrypted = true;
+      WebService = {
+        AllowUnencrypted = true;
+      };
     };
   };
 }
