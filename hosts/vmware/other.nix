@@ -22,6 +22,7 @@
     pciutils
     nixpkgs-fmt
     niri
+    xwayland-satellite
     waybar
     fuzzel
     alacritty
