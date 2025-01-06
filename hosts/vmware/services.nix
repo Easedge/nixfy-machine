@@ -28,6 +28,8 @@
     enable = true;
     port = 9090;
     openFirewall = false;
-    # settings = { };
+    settings = {
+      AllowUnencrypted = true;
+    };
   };
 }
