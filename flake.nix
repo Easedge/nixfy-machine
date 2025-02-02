@@ -23,13 +23,14 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , hardware
-    , disko
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      hardware,
+      disko,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.
@@ -69,7 +70,22 @@
           modules = [
             # > Our main nixos configuration file <
             ./hosts/vmware/configuration.nix
-            
+
+            disko.nixosModules.disko
+          ];
+        };
+
+        omen = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./hosts/omen/configuration.nix
+
+            hardware.nixosModules.common-cpu-intel
+            hardware.nixosModules.common-gpu-intel
+            hardware.nixosModules.common-pc-laptop
+            hardware.nixosModules.common-pc-ssd
+
             disko.nixosModules.disko
           ];
         };
@@ -83,7 +99,16 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main home-manager configuration file <
-            ./users/junglefish/home.nix
+            ./users/junglefish/vmware/home.nix
+          ];
+        };
+
+        "jazz@omen" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main home-manager configuration file <
+            ./users/jazz/omen/home.nix
           ];
         };
       };

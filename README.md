@@ -3,7 +3,7 @@
 ```sh
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disk-config.nix
 
-sudo nixos-install --flake .#your-hostname
+sudo nixos-install --no-root-password --flake .#your-hostname
 ```
 
 ## rebuild system
