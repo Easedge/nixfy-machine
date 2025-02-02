@@ -21,12 +21,12 @@
     ripgrep
     pciutils
     nixpkgs-fmt
-    niri
-    xwayland-satellite
-    waybar
-    fuzzel
-    alacritty
-    kitty
+    # niri
+    # xwayland-satellite
+    # waybar
+    # fuzzel
+    # alacritty
+    # kitty
   ];
 
   programs.nix-ld.enable = true;
