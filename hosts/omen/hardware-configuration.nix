@@ -5,11 +5,29 @@
   modulesPath,
   ...
 }:
-
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports =
+    [
+      ./diskoconfig.nix
+    ]
+    ++ [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.consoleMode = "max";
+  # boot.loader.systemd-boot.configurationLimit = 3;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # boot.supportedFilesystems = [ "ntfs" ];
+
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.device = "nodev";
+  # boot.loader.grub.default = "0"; # Select the second boot item, counting from 0
+  # boot.loader.grub.configurationLimit = 3;
+  # boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+  # boot.loader.grub.useOSProber = true;
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -30,21 +48,6 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ ];
   boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/NIX";
-    fsType = "btrfs";
-  };
-
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
-
-  # swapDevices =
-  #   [{ device = "/dev/disk/by-label/SWAP"; }];
-
-  zramSwap.enable = true;
-
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -52,7 +55,7 @@
   hardware.opengl.enable = true;
   hardware.uinput.enable = true;
   hardware.steam-hardware.enable = true;
-  hardware.pulseaudio.enable = false;
+  
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   hardware.bluetooth.settings = {

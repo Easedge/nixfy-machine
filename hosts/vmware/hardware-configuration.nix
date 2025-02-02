@@ -1,10 +1,18 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
-  imports = [
-    ./diskoconfig.nix
-  ] ++ [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
+  imports =
+    [
+      ./diskoconfig.nix
+    ]
+    ++ [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
   boot.loader.systemd-boot.enable = true;
   # boot.loader.systemd-boot.consoleMode = "max";
@@ -21,12 +29,20 @@
   # boot.loader.grub.efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
   # boot.loader.grub.useOSProber = true;
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "ahci" "xhci_pci" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [
+    "ata_piix"
+    "mptspi"
+    "uhci_hcd"
+    "ehci_pci"
+    "ahci"
+    "xhci_pci"
+    "sd_mod"
+    "sr_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.blacklistedKernelModules = [ ];
   boot.extraModulePackages = [ ];
-
 
   networking.hostName = "vmware";
   # networking.proxy.default = "http://192.168.31.180:8080/";

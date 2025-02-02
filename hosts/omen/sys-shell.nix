@@ -36,13 +36,7 @@
       export PS1="\[\e]0;\u@\h: \w\a\]$PS1"
     '';
     shellAliases = {
-      emc = "emacsclient";
+      # emc = "emacsclient";
     };
   };
-
-  environment.shells = [
-    pkgs.bashInteractive
-    # pkgs.fish
-  ];
-
 }

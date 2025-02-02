@@ -1,85 +1,41 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
-
+# This is your system's configuration file.
+# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./systemservices.nix
-      ./systempackages.nix
-      ./shellsettings.nix
-      ./network.nix
-      ./virtualisation.nix
-      ./desktop
-      ./programs
-      ./nvidia
-      # ./gpu-pass
-    ];
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  # You can import other NixOS modules here
+  imports = [
+    # If you want to use modules your own flake exports (from modules/nixos):
+    # outputs.nixosModules.example
 
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.systemd-boot.consoleMode = "max";
-  # boot.loader.systemd-boot.configurationLimit = 3;
+    # Or modules from other flakes (such as nixos-hardware):
+    # inputs.hardware.nixosModules.common-cpu-amd
+    # inputs.hardware.nixosModules.common-ssd
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.default = "0"; # Select the second boot item, counting from 0
-  boot.loader.grub.configurationLimit = 3;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-  boot.loader.grub.useOSProber = true;
+    # You can also split up your configuration and import pieces of it here:
+    ./sys-services.nix
+    ./sys-env.nix
+    ./sys-shell.nix
+    ./i18n.nix
+    ./fonts.nix
+    ./network.nix
+    ./virtualisation.nix
+    ./desktop
+    ./programs
+    ./nvidia
+    # ./gpu-pass
 
-  # boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  time.timeZone = "Asia/Shanghai";
-  # time.hardwareClockInLocalTime = true;
-
-  i18n.defaultLocale = "zh_CN.UTF-8";
-  i18n.supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.plasma6Support = true;
-    fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-      fcitx5-chinese-addons
-      fcitx5-configtool
-    ];
-    # enabled = "ibus";
-    # ibus.engines = with pkgs.ibus-engines; [
-    #   libpinyin
-    #   rime
-    # ];
-  };
-
-  users.users.junglefish = {
-    isNormalUser = true;
-    description = "junglefish";
-    # initialPassword = "admin";
-    shell = pkgs.bashInteractive;
-    extraGroups = [
-      "wheel"
-      "tty"
-      "audio"
-      "video"
-      "networkmanager"
-      "lp"
-      "docker"
-      "kvm"
-      "libvirtd"
-    ];
-  };
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      # Import your home-manager configuration
-      junglefish = import ../home/home.nix;
-    };
-  };
+    # Import your generated (nixos-generate-config) hardware configuration
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs = {
-    hostPlatform = lib.mkDefault "x86_64-linux";
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
@@ -102,28 +58,66 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
+    hostPlatform = lib.mkDefault "x86_64-linux";
   };
 
-  nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        # Enable flakes and new 'nix' command
+        experimental-features = "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = "";
+        # Workaround for https://github.com/NixOS/nix/issues/9574
+        nix-path = config.nix.nixPath;
 
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+        auto-optimise-store = true;
+        trusted-users = [
+          "root"
+          "jazz"
+        ];
+      };
+      # Opinionated: disable channels
+      # channel.enable = false;
 
-    settings = {
-      experimental-features = "nix-command flakes";
-      auto-optimise-store = true;
-      trusted-users = [ "root" "junglefish" ];
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+
+      extraOptions = ''
+        keep-outputs = true
+        keep-derivations = true
+      '';
     };
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-    '';
+
+  users.users.junglefish = {
+    # You can set an initial password for your user.
+    # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
+    # Be sure to change it (using passwd) after rebooting!
+    isNormalUser = true;
+    description = "junglefish";
+    # initialPassword = "admin";
+    packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
+    openssh.authorizedKeys.keys = [
+      # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+    ];
+    # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
+    extraGroups = [
+      "wheel"
+      "tty"
+      "audio"
+      "video"
+      "networkmanager"
+      "lp"
+      "docker"
+      "kvm"
+      "libvirtd"
+    ];
   };
 
-  system.stateVersion = "23.11";
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "25.05";
 }
-
