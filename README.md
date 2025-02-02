@@ -11,7 +11,7 @@ sudo nixos-install --no-root-password --flake .#your-hostname
 ```sh
 nix flake update
 
-sudo nixos-rebuild --flake .#your-hostname
+sudo nixos-rebuild switch --flake .#your-hostname
 
 home-manager --flake .#your-username@your-hostname
 ```
