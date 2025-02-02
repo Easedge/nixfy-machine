@@ -4,19 +4,14 @@
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "zh_CN.UTF-8/UTF-8" ];
   i18n.inputMethod = {
     enable = true;
-    type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      libpinyin
-      rime
+    type = "fcitx5";
+    fcitx5.plasma6Support = true;
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-chinese-addons
+      fcitx5-configtool
     ];
-    # type = "fcitx5";
-    # fcitx5.plasma6Support = true;
-    # fcitx5.waylandFrontend = true;
-    # fcitx5.addons = with pkgs; [
-    #   fcitx5-rime
-    #   fcitx5-chinese-addons
-    #   fcitx5-configtool
-    # ];
   };
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "zh_CN.UTF-8";

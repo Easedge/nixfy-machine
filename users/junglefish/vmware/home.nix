@@ -58,8 +58,6 @@
     htop
     vscode-fhs
     # google-chrome
-    gnomeExtensions.caffeine
-    gnomeExtensions.paperwm
   ];
 
   # Nicely reload system units when changing configs
