@@ -9,9 +9,8 @@
 
   xdg.portal.enable = true;
   xdg.portal.xdgOpenUsePortal = true;
-  # xdg.portal.configPackages [ pkgs.gnome-session ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # xdg.portal.wlr.enable = true;
-  # xdg.portal.wlr.settings = { };
 
   security.polkit.enable = true;
   security.rtkit.enable = true;
