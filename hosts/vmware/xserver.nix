@@ -10,14 +10,6 @@
   xdg.portal.enable = true;
   xdg.portal.xdgOpenUsePortal = true;
   # xdg.portal.configPackages [ pkgs.gnome-session ];
-  # xdg.portal.config = {
-  #   common = {
-  #     default = [
-  #       "gtk"
-  #     ];
-  #   };
-  # };
-  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   # xdg.portal.wlr.enable = true;
   # xdg.portal.wlr.settings = { };
 
