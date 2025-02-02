@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   time.timeZone = "Asia/Shanghai";
   # time.hardwareClockInLocalTime = true;
@@ -34,6 +33,7 @@
     pciutils # lspci
     usbutils # lsusb
     efibootmgr
+    solaar # logitech devices manager
     # complie
     gcc
     gdb
