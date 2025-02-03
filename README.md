@@ -13,5 +13,5 @@ nix flake update
 
 sudo nixos-rebuild switch --flake .#your-hostname
 
-home-manager --flake .#your-username@your-hostname
+home-manager switch --flake .#your-username@your-hostname
 ```
