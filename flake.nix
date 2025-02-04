@@ -71,7 +71,7 @@
             # > Our main nixos configuration file <
             ./hosts/vmware/configuration.nix
 
-            disko.nixosModules.disko
+            # disko.nixosModules.disko
           ];
         };
 
