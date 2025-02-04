@@ -20,7 +20,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome.pomodoro
+    gnome-pomodoro
     gnomeExtensions.pano
     gnomeExtensions.vitals
     gnomeExtensions.caffeine
