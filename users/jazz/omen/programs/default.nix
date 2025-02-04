@@ -37,6 +37,7 @@
     spotify
     uxplay
     localsend
+    # logseq
     # onlyoffice-bin
     obs-studio
     gimp
