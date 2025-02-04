@@ -98,7 +98,7 @@
     # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
     # Be sure to change it (using passwd) after rebooting!
     isNormalUser = true;
-    description = "junglefish";
+    description = "jazz";
     initialPassword = "admin";
     packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
     openssh.authorizedKeys.keys = [
