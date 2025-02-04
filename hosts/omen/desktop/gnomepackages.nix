@@ -13,9 +13,9 @@
 
   services.geoclue2 = {
     enable = true;
-    package = [
-      pkgs.geoclue2
-    ];
+    # package = [
+    #   pkgs.geoclue2
+    # ];
     # enableDemoAgent = true;
   };
 
