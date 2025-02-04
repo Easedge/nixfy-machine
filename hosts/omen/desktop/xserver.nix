@@ -9,8 +9,6 @@
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # xdg.portal.wlr.enable = true;
 
-  sound.enable = true;
-
   services.pipewire = {
     enable = true;
     audio.enable = true;
