@@ -28,6 +28,8 @@
     gnomeExtensions.tiling-assistant
     gnomeExtensions.paperwm
     gnomeExtensions.solaar-extension
+    gnomeExtensions.gtk4-desktop-icons-ng-ding
+    gnomeExtensions.appindicator
   ];
 
   environment.gnome.excludePackages = with pkgs; [

@@ -30,10 +30,10 @@
     # common desktop software
     google-chrome
     qbittorrent
-    calibre
+    # calibre
     qq
     telegram-desktop
-    element-desktop
+    # element-desktop
     spotify
     uxplay
     # onlyoffice-bin
