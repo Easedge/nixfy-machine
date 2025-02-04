@@ -36,6 +36,7 @@
     # element-desktop
     spotify
     uxplay
+    localsend
     # onlyoffice-bin
     obs-studio
     gimp
