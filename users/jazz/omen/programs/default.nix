@@ -29,7 +29,7 @@
     aspellDicts.en-computers
     # common desktop software
     google-chrome
-    qbittorrent-qt5
+    qbittorrent
     calibre
     qq
     telegram-desktop
