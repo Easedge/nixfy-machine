@@ -71,7 +71,7 @@
             # > Our main nixos configuration file <
             ./hosts/vmware/configuration.nix
 
-            # disko.nixosModules.disko
+            disko.nixosModules.disko
           ];
         };
 
@@ -86,7 +86,7 @@
             hardware.nixosModules.common-pc-laptop
             hardware.nixosModules.common-pc-ssd
 
-            # disko.nixosModules.disko
+            disko.nixosModules.disko
           ];
         };
       };
