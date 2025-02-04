@@ -15,7 +15,7 @@
 
   programs.bash = {
     enableLsColors = true;
-    enableCompletion = true;
+    completion.enable = true;
     blesh.enable = true;
     shellInit = ''
       eval "$(direnv hook bash)"
