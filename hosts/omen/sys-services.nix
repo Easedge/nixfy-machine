@@ -24,11 +24,13 @@
   };
 
   services.fwupd.enable = true;
-  services.openssh.enable = true;
-  services.flatpak.enable = true;
-  services.v2raya.enable = true;
   services.usbmuxd.enable = true;
 
+  services.openssh.enable = true;
+
+  services.flatpak.enable = true;
+
+  # services.v2raya.enable = true;
   services.daed = {
       enable = true; # 127.0.0.1:2023
       openFirewall = {
