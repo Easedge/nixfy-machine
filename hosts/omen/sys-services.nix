@@ -30,10 +30,10 @@
   services.usbmuxd.enable = true;
 
   services.daed = {
-      enable = true;
+      enable = true; # 127.0.0.1:2023
       openFirewall = {
         enable = true;
-        port = 12345;
+        port = 8080;
       };
   };
 }
