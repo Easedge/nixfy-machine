@@ -32,6 +32,7 @@
     qbittorrent
     # calibre
     qq
+    wechat-uos
     telegram-desktop
     # element-desktop
     spotify
