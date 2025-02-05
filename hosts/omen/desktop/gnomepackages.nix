@@ -30,6 +30,7 @@
     gnomeExtensions.solaar-extension
     gnomeExtensions.gtk4-desktop-icons-ng-ding
     gnomeExtensions.appindicator
+    gnomeExtensions.lunar-calendar # dependency needed ChineseCalendar by ytliu0
   ];
 
   environment.gnome.excludePackages = with pkgs; [
