@@ -33,7 +33,7 @@
       enable = true; # 127.0.0.1:2023
       openFirewall = {
         enable = true;
-        port = 8080;
+        port = 12345;
       };
   };
 }
