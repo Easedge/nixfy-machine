@@ -20,6 +20,9 @@
     # Nix-community disko
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nix flake for dae and daed
+    daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 
   outputs =
@@ -29,6 +32,7 @@
       home-manager,
       hardware,
       disko,
+      daeuniverse,
       ...
     }@inputs:
     let
@@ -85,6 +89,9 @@
             hardware.nixosModules.common-gpu-intel
             hardware.nixosModules.common-pc-laptop
             hardware.nixosModules.common-pc-ssd
+
+            daeuniverse.nixosModules.dae
+            daeuniverse.nixosModules.daed
 
             disko.nixosModules.disko
           ];
